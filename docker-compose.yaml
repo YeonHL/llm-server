@@ -1,0 +1,27 @@
+name: llm_server
+
+services:
+  qwen3-0.6b:
+    restart: always
+    image: vllm/vllm-openai:v0.10.1.1
+    container_name: vllm-qwen3-0.6b
+    networks:
+      - llm_server
+    command: vllm --port 8000 --model Qwen/Qwen3-0.6B
+    ports:
+      - "8000:8000"
+    volumes:
+      - <your_model_cache>:/root/.cache/huggingface/hub
+    tty: true
+    stdin_open: true
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+
+networks:
+  llm_server:
+    driver: bridge

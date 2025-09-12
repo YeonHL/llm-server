@@ -1,0 +1,5 @@
+FROM vllm/vllm-openai:v0.10.1.1
+
+VOLUME [ "/root/.cache/huggingface/hub" ]
+EXPOSE 8000
+ENTRYPOINT [ "vllm", "--port", "8000", "--model", "Qwen/Qwen3-0.6B" ]
