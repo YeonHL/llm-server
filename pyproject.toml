@@ -4,4 +4,6 @@ version = "0.1.0"
 description = "model server for llm projects"
 readme = "README.md"
 requires-python = ">=3.13"
-dependencies = []
+dependencies = [
+    "vllm>=0.10.2",
+]

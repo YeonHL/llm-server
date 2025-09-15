@@ -2,4 +2,4 @@ FROM vllm/vllm-openai:v0.10.1.1
 
 VOLUME [ "/root/.cache/huggingface/hub" ]
 EXPOSE 8000
-ENTRYPOINT [ "vllm", "--port", "8000", "--model", "Qwen/Qwen3-0.6B" ]
+ENTRYPOINT [ "vllm", "serve", "Qwen/Qwen3-0.6B", "--enable-auto-tool-choice", "--tool-call-parser", "hermes", "--port", "8000"]
